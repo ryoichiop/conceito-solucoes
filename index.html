@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conceito Soluções — Sua indústria mais eficiente</title>
+<meta name="description" content="A Conceito representa as marcas líderes em soluções industriais que reduzem consumo, aumentam produtividade e entregam eficiência.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #07221E;
+    --bg-dark:   #061D1A;
+    --card:      #0B2E28;
+    --card-hov:  #0E3B33;
+    --ink:       #EAF3EE;
+    --lime:      #C6F24E;
+    --m1:        #C9DBD3;
+    --m2:        #A6C2B8;
+    --m3:        #9DBCB2;
+    --m4:        #7FA095;
+    --m5:        #5E7E74;
+    --b1:        #143A33;
+    --b2:        #18443B;
+    --b3:        #1E4A41;
+    --b4:        #2A5C51;
+    --pad:       64px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: 'Sora', sans-serif; margin: 0; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1440px; margin: 0 auto; }
+  .px { padding-left: var(--pad); padding-right: var(--pad); }
+
+  /* ---- NAV ---- */
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px var(--pad);
+  }
+  .brand {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 20px; letter-spacing: -.4px;
+  }
+  .brand span, .lime { color: var(--lime); }
+  .nav-links { display: flex; align-items: center; gap: 36px; }
+  .nav-link {
+    font-size: 14.5px; color: var(--m3); cursor: pointer;
+    transition: color .2s; background: none; border: 0; font-family: inherit;
+  }
+  .nav-link:hover { color: var(--lime); }
+  .nav-toggle { display: none; }
+
+  /* ---- BUTTONS ---- */
+  .btn-p {
+    font-size: 14px; font-weight: 700; background: var(--lime);
+    color: var(--bg); padding: 11px 22px; border-radius: 100px;
+    cursor: pointer; transition: box-shadow .2s; border: 0;
+    font-family: inherit; display: inline-block; text-align: center;
+  }
+  .btn-p:hover { box-shadow: 0 0 0 4px rgba(198,242,78,.22); }
+  .btn-p.lg { font-size: 15px; padding: 15px 30px; }
+  .btn-g {
+    font-size: 15px; font-weight: 600; background: transparent;
+    color: var(--ink); border: 1px solid var(--b4);
+    padding: 15px 30px; border-radius: 100px; cursor: pointer;
+    transition: all .2s; font-family: inherit; display: inline-block;
+  }
+  .btn-g:hover { border-color: var(--lime); color: var(--lime); }
+
+  /* ---- HERO ---- */
+  .hero { position: relative; padding: 74px var(--pad) 84px; overflow: hidden; }
+  .hero-glow {
+    position: absolute; top: -120px; right: -80px; width: 520px; height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(198,242,78,.16), transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: 980px; }
+  .hero h1 {
+    font-weight: 800; font-size: 78px; line-height: 1;
+    letter-spacing: -2.5px; margin: 0 0 26px;
+  }
+  .hero p {
+    font-size: 19px; line-height: 1.6; color: var(--m2);
+    max-width: 620px; margin: 0 0 38px;
+  }
+  .hero-cta { display: flex; gap: 14px; margin-bottom: 60px; flex-wrap: wrap; }
+  .stats { display: flex; gap: 56px; flex-wrap: wrap; }
+  .stat-num {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 38px; color: #fff; line-height: 1;
+  }
+  .stat-label { font-size: 13px; color: var(--m4); margin-top: 8px; }
+
+  /* ---- BRANDS STRIP ---- */
+  .strip {
+    padding: 30px var(--pad);
+    border-top: 1px solid var(--b1); border-bottom: 1px solid var(--b1);
+    background: var(--bg-dark);
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  }
+  .strip-label {
+    font-size: 13px; letter-spacing: 1px; color: var(--m5);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .strip-logos { display: flex; align-items: center; gap: 54px; flex-wrap: wrap; }
+  .strip-logos img {
+    height: 28px; width: auto; max-width: 140px; object-fit: contain;
+    filter: brightness(0) invert(1); opacity: .8;
+  }
+
+  /* ---- SECTION HELPERS ---- */
+  .eyebrow {
+    font-size: 13px; font-weight: 700; letter-spacing: 1.5px;
+    color: var(--lime); text-transform: uppercase; margin-bottom: 14px;
+  }
+
+  /* ---- SOLUTIONS ---- */
+  .solutions { padding: 92px var(--pad); }
+  .sol-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 48px; gap: 40px;
+  }
+  .sol-head h2 {
+    font-weight: 700; font-size: 44px; letter-spacing: -1.2px; line-height: 1.05;
+  }
+  .sol-head p {
+    font-size: 15px; color: var(--m4); max-width: 320px;
+    text-align: right; line-height: 1.6; margin: 0;
+  }
+  .sol-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 14px; align-items: start;
+  }
+  .sol-card {
+    background: var(--card); border: 1px solid var(--b2);
+    border-radius: 18px; overflow: hidden; transition: border-color .2s;
+  }
+  .sol-card:hover { border-color: var(--b4); }
+  .sol-card.open { border-color: var(--lime); background: var(--card-hov); }
+  .sol-toggle { padding: 26px 22px; cursor: pointer; }
+  .sol-toprow {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .sol-icon {
+    width: 48px; height: 48px; border-radius: 13px;
+    background: var(--bg); border: 1px solid var(--b3);
+    display: flex; align-items: center; justify-content: center; color: var(--lime);
+  }
+  .sol-sign { font-size: 26px; font-weight: 300; color: var(--lime); line-height: 1; }
+  .sol-card h3 {
+    font-weight: 600; font-size: 19px; letter-spacing: -.4px;
+    margin: 0 0 8px; line-height: 1.15; min-height: 44px;
+  }
+  .sol-desc {
+    font-size: 13.5px; line-height: 1.55; color: var(--m4);
+    margin: 0; min-height: 63px;
+  }
+  .sol-panel { display: none; padding: 4px 22px 26px; }
+  .sol-card.open .sol-panel { display: block; }
+  .sol-brand {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--lime);
+    text-transform: uppercase; margin-bottom: 12px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--b2);
+  }
+  .sol-long { font-size: 13.5px; line-height: 1.65; color: var(--m2); margin: 0 0 18px; }
+  .sol-applabel {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--m5);
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .sol-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill {
+    font-size: 11.5px; color: var(--lime); background: var(--bg);
+    border: 1px solid var(--b3); border-radius: 100px;
+    padding: 5px 11px; font-weight: 500;
+  }
+
+  /* ---- WHY ---- */
+  .why { padding: 90px var(--pad); background: var(--bg-dark); border-top: 1px solid var(--b1); }
+  .why h2 {
+    font-weight: 700; font-size: 44px; letter-spacing: -1.2px;
+    margin: 0 0 50px; line-height: 1.05; max-width: 640px;
+  }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .why-item { border-top: 2px solid var(--lime); padding-top: 24px; }
+  .why-top {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+  }
+  .why-top .ic { color: var(--lime); display: inline-flex; }
+  .why-num { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px; color: var(--b4); }
+  .why-item h3 { font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 700; margin: 0 0 10px; color: var(--ink); }
+  .why-item p { font-size: 14px; line-height: 1.6; color: var(--m4); margin: 0; }
+
+  /* ---- CONTACT ---- */
+  .contact { padding: 96px var(--pad); }
+  .contact-card {
+    background: linear-gradient(135deg, var(--card), var(--card-hov));
+    border: 1px solid var(--b2); border-radius: 24px; padding: 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+  }
+  .contact-card h2 {
+    font-weight: 700; font-size: 42px; letter-spacing: -1.2px;
+    margin: 0 0 20px; line-height: 1.05;
+  }
+  .contact-card .lead {
+    font-size: 17px; line-height: 1.65; color: var(--m2);
+    margin: 0 0 38px; max-width: 420px;
+  }
+  .contact-rows { display: flex; flex-direction: column; gap: 16px; }
+  .contact-row { display: flex; align-items: center; gap: 14px; }
+  .contact-row .k {
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    color: var(--lime); width: 64px;
+  }
+  .contact-row .v { font-size: 16px; color: var(--m1); }
+
+  .form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .input {
+    background: var(--bg); border: 1px solid var(--b4); color: var(--ink);
+    padding: 13px 14px; font-size: 14px; font-family: inherit; border-radius: 10px;
+    width: 100%;
+  }
+  .input::placeholder { color: var(--m4); }
+  .input:focus { border-color: var(--lime); outline: none; }
+  textarea.input { height: 110px; resize: none; margin-bottom: 18px; }
+  .form-submit {
+    text-align: center; font-size: 15px; font-weight: 700;
+    background: var(--lime); color: var(--bg); padding: 15px;
+    border-radius: 100px; cursor: pointer; transition: box-shadow .2s;
+    border: 0; width: 100%; font-family: inherit;
+  }
+  .form-submit:hover { box-shadow: 0 0 0 4px rgba(198,242,78,.22); }
+  .form-success { padding: 50px 10px; text-align: center; }
+  .form-success .check {
+    width: 54px; height: 54px; border-radius: 50%; background: var(--lime);
+    color: var(--bg); display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 700; margin: 0 auto 18px;
+  }
+  .form-success h3 { font-weight: 700; font-size: 24px; margin: 0 0 10px; }
+  .form-success p { font-size: 15px; color: var(--m2); margin: 0; }
+  [hidden] { display: none !important; }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    padding: 46px var(--pad); border-top: 1px solid var(--b1); background: var(--bg-dark);
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .footer .fb { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 17px; }
+  .footer .fm { font-size: 13px; color: var(--m5); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 1200px) {
+    .sol-grid { grid-template-columns: repeat(3, 1fr); }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    :root { --pad: 32px; }
+    .hero h1 { font-size: 56px; letter-spacing: -1.6px; }
+    .sol-head h2, .why h2 { font-size: 34px; }
+    .contact-card { grid-template-columns: 1fr; gap: 40px; padding: 40px; }
+    .contact-card h2 { font-size: 34px; }
+    .strip { flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .nav-links.show {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
+      position: absolute; top: 72px; left: 0; right: 0; z-index: 20;
+      background: var(--bg-dark); border-bottom: 1px solid var(--b1);
+      padding: 24px var(--pad);
+    }
+    .nav { position: relative; }
+    .nav-toggle {
+      display: inline-flex; background: none; border: 0; color: var(--ink);
+      cursor: pointer; padding: 6px;
+    }
+    .sol-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .sol-head { flex-direction: column; align-items: flex-start; }
+    .sol-head p { text-align: left; }
+    .sol-card h3, .sol-desc { min-height: 0; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 44px; }
+    .form-grid2 { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="brand">Conceito <span>Soluções</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a class="nav-link" href="#solucoes">Soluções</a>
+      <a class="nav-link" href="#solucoes">Marcas</a>
+      <a class="nav-link" href="#conceito">A Conceito</a>
+      <a class="nav-link" href="#contato">Contato</a>
+      <a class="btn-p" href="#contato">Solicitar orçamento</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <h1>Sua indústria<br>mais <span class="lime">eficiente</span>.</h1>
+      <p>A Conceito representa as marcas líderes em soluções industriais que reduzem consumo, aumentam produtividade e entregam eficiência.</p>
+      <div class="hero-cta">
+        <a class="btn-p lg" href="#contato">Falar com especialista</a>
+        <a class="btn-g" href="#solucoes">Ver soluções</a>
+      </div>
+      <div class="stats">
+        <div><div class="stat-num">+15</div><div class="stat-label">anos de experiência</div></div>
+        <div><div class="stat-num">05</div><div class="stat-label">marcas líderes</div></div>
+        <div><div class="stat-num">+500</div><div class="stat-label">projetos atendidos</div></div>
+        <div><div class="stat-num">Brasil</div><div class="stat-label">cobertura nacional</div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BRANDS STRIP -->
+  <div class="strip">
+    <span class="strip-label">Marcas que representamos</span>
+    <div class="strip-logos">
+      <img src="https://www.engepoli.com/wp-content/uploads/2024/06/cropped-engepoli-logo-icone-1-270x270.png" alt="Engepoli">
+      <img src="https://www.hda.ind.br/images/hda-iluminacao-led.png" alt="HDA">
+      <img src="https://rayflex.com.br/wp-content/uploads/2024/10/rayflex-logo.svg" alt="Rayflex">
+      <img src="https://ztechcompositos.com/wp-content/uploads/logo-ztech.png" alt="Z-Tech">
+      <img src="https://topeurbano.com/web/image/50395-ef98299e/logo-blanco.svg" alt="Tope Urbano">
+    </div>
+  </div>
+
+  <!-- SOLUTIONS -->
+  <section class="solutions" id="solucoes">
+    <div class="sol-head">
+      <div>
+        <div class="eyebrow">Soluções</div>
+        <h2>Cinco frentes, um galpão<br>mais produtivo</h2>
+      </div>
+      <p>Cada solução é especificada e dimensionada pela nossa equipe técnica conforme a sua aplicação.</p>
+    </div>
+    <div class="sol-grid" id="solGrid"></div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why" id="conceito">
+    <div class="eyebrow">A Conceito</div>
+    <h2>Uma parceira próxima, da especificação ao pós-venda</h2>
+    <div class="why-grid" id="whyGrid"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contato">
+    <div class="contact-card">
+      <div>
+        <div class="eyebrow">Contato</div>
+        <h2>Vamos dimensionar a solução ideal</h2>
+        <p class="lead">Conte o desafio da sua operação. Nossa equipe retorna com uma proposta técnica sob medida.</p>
+        <div class="contact-rows">
+          <div class="contact-row"><span class="k">TEL</span><span class="v">(32) 98815-6474</span></div>
+          <div class="contact-row"><span class="k">E-MAIL</span><span class="v">lpenna@conceitosolucoes.net</span></div>
+          <div class="contact-row"><span class="k"></span><span class="v">Atendimento em todo o Brasil</span></div>
+        </div>
+      </div>
+      <div>
+        <form id="contactForm">
+          <div class="form-grid2">
+            <input class="input" placeholder="Nome" aria-label="Nome">
+            <input class="input" placeholder="Empresa" aria-label="Empresa">
+          </div>
+          <div class="form-grid2">
+            <input class="input" type="email" placeholder="E-mail" aria-label="E-mail">
+            <input class="input" placeholder="Telefone" aria-label="Telefone">
+          </div>
+          <textarea class="input" placeholder="Descreva sua necessidade" aria-label="Descreva sua necessidade"></textarea>
+          <button type="submit" class="form-submit">Solicitar orçamento</button>
+        </form>
+        <div class="form-success" id="formSuccess" hidden>
+          <div class="check">✓</div>
+          <h3>Recebido!</h3>
+          <p>Obrigado. Nossa equipe entrará em contato em breve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="fb">Conceito <span class="lime">Soluções</span></span>
+    <span class="fm">Engepoli · HDA · Rayflex · Z-Tech · Tope Urbano</span>
+    <span class="fm">© 2026 Conceito Soluções</span>
+  </footer>
+
+</div>
+
+<script>
+  // ---- Icon builders (Lucide-style paths, from the design) ----
+  const SVG = (size, paths) =>
+    `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" ` +
+    `stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">` +
+    paths.map(d => `<path d="${d}"/>`).join('') + `</svg>`;
+
+  const SOL_ICON = {
+    1: ['M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z','M12 2v2','M12 20v2','m4.93 4.93 1.41 1.41','m17.66 17.66 1.41 1.41','M2 12h2','M20 12h2','m6.34 17.66-1.41 1.41','m19.07 4.93-1.41 1.41'],
+    2: ['M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5','M9 18h6','M10 22h4'],
+    3: ['M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14','M2 20h20','M14 12v.01'],
+    4: ['M3 3h18v18H3Z','M3 9h18','M3 15h18','M9 3v18','M15 3v18'],
+    5: ['M4 19 8 5','M20 19 16 5','M12 5v2','M12 11v2','M12 17v2'],
+  };
+  const WHY_ICON = {
+    1: ['M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2Z','M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1'],
+    2: ['M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z','M14.5 12.5 16 11','M11.5 9.5 13 8','M8.5 6.5 10 5','M17.5 15.5 19 14'],
+    3: ['M12 14a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z','M15.5 12.5 17 22l-5-3-5 3 1.5-9.5'],
+    4: ['M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8','M21 3v5h-5','M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16','M3 21v-5h5'],
+  };
+
+  // ---- Data ----
+  const SOLUTIONS = [
+    { n:1, brand:'Engepoli', title:'Luz e ventilação natural', desc:'Domos, lanternins e venezianas que trazem luz do dia e reduzem energia.', long:'Há 25 anos a Engepoli desenvolve, fabrica e instala sistemas certificados de iluminação e ventilação natural. Domos nanoprismáticos, lanternins, venezianas e fachadas translúcidas levam a luz do dia ao galpão, reduzem o consumo de energia e melhoram o conforto térmico, chegando a 54% de economia em centros de distribuição.', products:['Skylux · domos','Intralux','Luxwall · fachadas','Exhaust · lanternins','Luxvent · venezianas','Airglide'] },
+    { n:2, brand:'HDA', title:'Iluminação LED industrial', desc:'Luminárias de alta potência e eficiência para grandes áreas.', long:'Pioneira na fabricação de LED de alta potência para grandes áreas, a HDA entrega luminárias robustas e eficientes, com conformidade à ABNT 8995 e projeto luminotécnico gratuito. Redução de até 85% no custo de energia para indústrias, centros de distribuição, supermercados, quadras e portos.', products:['Indústrias','Centros de distribuição','Supermercados','Quadras poliesportivas','Portos e aeroportos'] },
+    { n:3, brand:'Rayflex', title:'Portas rápidas e docas', desc:'Portas autorreparáveis, niveladoras e vedação para logística.', long:'Há mais de 37 anos referência em portas rápidas e equipamentos para docas. Portas autorreparáveis, soluções para câmara fria, sala limpa e áreas externas, além de niveladoras e vedação de docas, trazendo mais agilidade, segurança e controle térmico na sua logística.', products:['Porta Rápida RP','Vectorflex','Vector M2','FRIGOMAX · câmara fria','RP SL 01 · sala limpa','Niveladora de doca','DockDoor'] },
+    { n:4, brand:'Z-Tech', title:'Vergalhões de fibra de vidro', desc:'Vergalhão GFRP mais leve e resistente que o aço, sem corrosão.', long:'A Z-Tech fabrica no Brasil vergalhões e malhas de fibra de vidro (GFRP), uma alternativa superior ao aço no concreto armado. Mais leves e resistentes, não sofrem corrosão, dispensam equipamentos pesados na instalação e prolongam a vida útil das estruturas, com certificações ISO 10406-1:2015 e ACI 440.1R-15.', products:['Vergalhões GFRP','Malhas de fibra de vidro','Construção civil','Infraestrutura urbana','Ambientes corrosivos'] },
+    { n:5, brand:'Tope Urbano', title:'Demarcação viária instantânea', desc:'Kits autoinstaláveis de sinalização de piso, sem pintura.', long:'Primeira fabricante de kits autoinstaláveis para demarcação viária e sinalização de piso. Setas, linhas, palavras, redutores e faixas aplicados sem pintura, com modelos 1:1 e guia passo a passo, para uma demarcação instantânea, mais durável e sem os prazos da pintura tradicional.', products:['Kit Setas','Kit Linhas','Kit Palavras','Kit Redutores','Kit Formas','Kit Faixas'] },
+  ];
+  const WHYS = [
+    { n:1, title:'Atendimento consultivo', desc:'Entendemos sua operação antes de indicar a solução.' },
+    { n:2, title:'Projeto sob medida', desc:'Especificação técnica conforme cada aplicação.' },
+    { n:3, title:'Marcas líderes', desc:'Fabricantes de referência no mercado industrial.' },
+    { n:4, title:'Do projeto ao pós-venda', desc:'Acompanhamento completo em cada etapa.' },
+  ];
+
+  // ---- Render solutions (accordion, one open at a time) ----
+  let openSol = null;
+  const solGrid = document.getElementById('solGrid');
+
+  function renderSolutions() {
+    solGrid.innerHTML = SOLUTIONS.map(s => {
+      const isOpen = openSol === s.n;
+      return `
+        <div class="sol-card${isOpen ? ' open' : ''}" data-n="${s.n}">
+          <div class="sol-toggle" role="button" tabindex="0" aria-expanded="${isOpen}">
+            <div class="sol-toprow">
+              <div class="sol-icon">${SVG(24, SOL_ICON[s.n])}</div>
+              <span class="sol-sign">${isOpen ? '–' : '+'}</span>
+            </div>
+            <h3>${s.title}</h3>
+            <p class="sol-desc">${s.desc}</p>
+          </div>
+          <div class="sol-panel">
+            <div class="sol-brand">${s.brand}</div>
+            <p class="sol-long">${s.long}</p>
+            <div class="sol-applabel">Linhas e aplicações</div>
+            <div class="sol-pills">${s.products.map(p => `<span class="pill">${p}</span>`).join('')}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function toggleSol(n) {
+    openSol = (openSol === n) ? null : n;
+    renderSolutions();
+  }
+
+  solGrid.addEventListener('click', e => {
+    const card = e.target.closest('.sol-card');
+    if (card) toggleSol(Number(card.dataset.n));
+  });
+  solGrid.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.sol-card');
+    if (card) { e.preventDefault(); toggleSol(Number(card.dataset.n)); }
+  });
+  renderSolutions();
+
+  // ---- Render "why" ----
+  document.getElementById('whyGrid').innerHTML = WHYS.map(w => `
+    <div class="why-item">
+      <div class="why-top">
+        <span class="ic">${SVG(28, WHY_ICON[w.n])}</span>
+        <span class="why-num">0${w.n}</span>
+      </div>
+      <h3>${w.title}</h3>
+      <p>${w.desc}</p>
+    </div>`).join('');
+
+  // ---- Contact form ----
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    form.hidden = true;
+    document.getElementById('formSuccess').hidden = false;
+  });
+
+  // ---- Mobile nav ----
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const show = navLinks.classList.toggle('show');
+    navToggle.setAttribute('aria-expanded', show);
+  });
+  navLinks.addEventListener('click', e => {
+    if (e.target.closest('a')) {
+      navLinks.classList.remove('show');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
+</body>
+</html>
