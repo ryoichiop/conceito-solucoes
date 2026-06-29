@@ -343,6 +343,51 @@
     .contact-row .k { width: 50px; }
     .contact-row .v { font-size: 15px; }
   }
+  /* ---- CASES ---- */
+  .cases { padding: 92px var(--pad); background: var(--bg-dark); border-top: 1px solid var(--b1); }
+  .cases-head { display:flex; align-items:flex-end; justify-content:space-between; gap:40px; margin-bottom:28px; }
+  .cases-head h2 { font-family:'Sora',sans-serif; font-weight:700; font-size:44px; letter-spacing:-1.2px; line-height:1.05; margin:0; }
+  .cases-head p { font-size:15px; color:var(--m4); max-width:360px; text-align:right; line-height:1.6; margin:0; }
+  .cases-filters { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
+  .cf-btn { font-family:inherit; font-size:13.5px; font-weight:600; color:var(--m2); background:var(--card); border:1px solid var(--b2); border-radius:100px; padding:9px 18px; cursor:pointer; transition:all .2s; }
+  .cf-btn:hover { border-color:var(--b4); color:var(--ink); }
+  .cf-btn.active { background:var(--lime); color:var(--bg); border-color:var(--lime); }
+  .cases-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(258px,1fr)); gap:14px; }
+  .case-tile { position:relative; aspect-ratio:4/3; border-radius:16px; overflow:hidden; cursor:pointer; background:var(--card); border:1px solid var(--b2); }
+  .case-tile img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
+  .case-tile:hover img { transform:scale(1.06); }
+  .case-tile::after { content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(6,29,26,.92) 0%, rgba(6,29,26,.22) 46%, transparent 72%); }
+  .case-meta { position:absolute; left:0; right:0; bottom:0; z-index:2; padding:15px; }
+  .case-brand { display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--lime); background:rgba(7,34,30,.6); border:1px solid var(--b3); border-radius:100px; padding:3px 9px; margin-bottom:8px; }
+  .case-title { font-family:'Sora',sans-serif; font-weight:600; font-size:15.5px; color:#fff; line-height:1.2; }
+  .case-loc { font-size:12.5px; color:var(--m2); margin-top:2px; }
+  .case-play { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2; width:52px; height:52px; border-radius:50%; background:rgba(198,242,78,.93); color:var(--bg); display:flex; align-items:center; justify-content:center; transition:transform .2s; }
+  .case-tile:hover .case-play { transform:translate(-50%,-50%) scale(1.1); }
+
+  /* ---- LIGHTBOX ---- */
+  .lb { position:fixed; inset:0; z-index:2000; background:rgba(4,16,14,.94); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); display:none; align-items:center; justify-content:center; padding:40px; }
+  .lb.open { display:flex; }
+  .lb-stage { display:flex; align-items:center; justify-content:center; }
+  .lb-stage img, .lb-stage video { max-width:92vw; max-height:78vh; width:auto; height:auto; border-radius:10px; box-shadow:0 20px 60px rgba(0,0,0,.55); background:#000; }
+  .lb-caption { position:absolute; bottom:24px; left:0; right:0; text-align:center; color:var(--m2); font-size:14px; line-height:1.5; padding:0 24px; }
+  .lb-caption b { color:#fff; font-family:'Sora',sans-serif; font-weight:600; }
+  .lb-caption .lc-brand { color:var(--lime); font-weight:700; font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+  .lb-close { position:absolute; top:16px; right:22px; background:none; border:0; color:#fff; font-size:42px; line-height:1; cursor:pointer; opacity:.85; }
+  .lb-close:hover { opacity:1; }
+  .lb-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); color:#fff; width:48px; height:48px; border-radius:50%; font-size:26px; line-height:1; cursor:pointer; transition:background .2s; }
+  .lb-nav:hover { background:rgba(255,255,255,.18); }
+  .lb-prev { left:20px; } .lb-next { right:20px; }
+  @media (max-width:900px){ .cases-head h2 { font-size:34px; } }
+  @media (max-width:720px){
+    .cases-head { flex-direction:column; align-items:flex-start; }
+    .cases-head p { text-align:left; }
+    .cases-grid { grid-template-columns:repeat(auto-fill, minmax(148px,1fr)); gap:10px; }
+    .case-meta { padding:11px; }
+    .case-title { font-size:13.5px; }
+    .lb-nav { width:40px; height:40px; font-size:22px; }
+    .lb-prev { left:10px; } .lb-next { right:10px; }
+  }
+  @media (max-width:480px){ .cases { padding:60px var(--pad); } }
 </style>
 </head>
 <body>
@@ -356,6 +401,7 @@
     </button>
     <div class="nav-links" id="navLinks">
       <a class="nav-link" href="#solucoes">Soluções</a>
+      <a class="nav-link" href="#cases">Cases</a>
       <a class="nav-link" href="#conceito">A Conceito</a>
       <a class="nav-link" href="#contato">Contato</a>
       <a class="btn-p" href="#contato">Solicitar orçamento</a>
@@ -403,6 +449,19 @@
       <p>Cada solução é especificada e dimensionada pela nossa equipe técnica conforme a sua aplicação.</p>
     </div>
     <div class="sol-grid" id="solGrid"></div>
+  </section>
+
+  <!-- CASES -->
+  <section class="cases" id="cases">
+    <div class="cases-head">
+      <div>
+        <div class="eyebrow">Cases</div>
+        <h2>Aplicações reais</h2>
+      </div>
+      <p>Fotos e vídeos de soluções instaladas em indústrias, centros de distribuição e obras pelo Brasil e exterior.</p>
+    </div>
+    <div class="cases-filters" id="casesFilters"></div>
+    <div class="cases-grid" id="casesGrid"></div>
   </section>
 
   <!-- WHY -->
@@ -464,6 +523,15 @@
 <a class="wa-float" href="https://wa.me/5532988156474" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35Z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01c-1.53 0-3.03-.41-4.34-1.19l-.31-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.25-8.24 8.25Z"/></svg>
 </a>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Fechar">&times;</button>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="Anterior">&#8249;</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="Próximo">&#8250;</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
 
 <script>
   // ---- Icon builders (Lucide-style paths, from the design) ----
@@ -596,6 +664,100 @@
       navLinks.classList.remove('show');
       navToggle.setAttribute('aria-expanded', 'false');
     }
+  });
+
+  // ---- CASES gallery ----
+  const CASES = [
+    // Engepoli
+    { brand:'Engepoli', title:'Arena da Baixada', loc:'Curitiba · PR', type:'image', img:'cases/engepoli-arena-1.jpg', desc:'Domos Skylux, fachadas Luxwall e venezianas Luxvent — mais de 41.000 m² de policarbonato.' },
+    { brand:'Engepoli', title:'Arena da Baixada', loc:'Curitiba · PR', type:'image', img:'cases/engepoli-arena-2.jpg', desc:'Iluminação e ventilação natural na cobertura do estádio.' },
+    { brand:'Engepoli', title:'Hangar da Azul', loc:'Azul Linhas Aéreas', type:'image', img:'cases/engepoli-hangar-1.jpg', desc:'Venezianas industriais Luxvent para ventilação e luz natural em estrutura de grande vão.' },
+    { brand:'Engepoli', title:'Hangar da Azul', loc:'Azul Linhas Aéreas', type:'image', img:'cases/engepoli-hangar-2.jpg', desc:'Renovação de ar e entrada de luz natural no hangar.' },
+    { brand:'Engepoli', title:'Volkswagen', loc:'Galpão industrial', type:'image', img:'cases/engepoli-vw-1.jpg', desc:'Domos Skylux nanoprismáticos para iluminação natural.' },
+    { brand:'Engepoli', title:'Volkswagen', loc:'Galpão industrial', type:'image', img:'cases/engepoli-vw-2.jpg', desc:'Luz do dia difusa reduzindo o consumo de energia.' },
+    { brand:'Engepoli', title:'Centro de distribuição', loc:'Obra #509', type:'image', img:'cases/engepoli-509-1.jpg', desc:'Domos NanoPrismáticos Skylux em CD logístico.' },
+    { brand:'Engepoli', title:'Centro de distribuição', loc:'Obra #509', type:'image', img:'cases/engepoli-509-2.jpg', desc:'Iluminação natural homogênea no galpão.' },
+    { brand:'Engepoli', title:'Iluminação natural', loc:'Obra #515', type:'image', img:'cases/engepoli-515.jpg', desc:'Domos Skylux 555 NanoPrismático, até 80% de transmissão de luz, sem ponto quente.' },
+    // HDA
+    { brand:'HDA', title:'Klabin — Unidade Puma', loc:'Ortigueira · PR', type:'image', img:'cases/hda-klabin-1.jpg', desc:'Iluminação externa com telegestão: controle remoto e dimerização ponto a ponto.' },
+    { brand:'HDA', title:'Klabin — Unidade Puma', loc:'Ortigueira · PR', type:'image', img:'cases/hda-klabin-2.jpg', desc:'Gerenciamento do nível de iluminação via internet.' },
+    { brand:'HDA', title:'Capital Realty', loc:'Itajaí · SC', type:'image', img:'cases/hda-capital-realty.jpg', desc:'Mais de 790 produtos HDA — Alta Eficiência e High Bay.' },
+    { brand:'HDA', title:'Posto Mazzochi', loc:'Posto de combustível', type:'image', img:'cases/hda-mazzochi-1.jpg', desc:'16 luminárias HDA 005 G1, desempenho comprovado ao longo de 6 anos.' },
+    { brand:'HDA', title:'Posto Mazzochi', loc:'Posto de combustível', type:'image', img:'cases/hda-mazzochi-2.jpg', desc:'Economia de energia e qualidade de luz em um único produto.' },
+    // Rayflex
+    { brand:'Rayflex', title:'Inplável', loc:'Joinville · SC', type:'video', src:'cases/rayflex-inplavel-joinville.mp4', poster:'cases/rayflex-inplavel-joinville-poster.jpg', desc:'Porta Rápida RP com acionamento por radar.' },
+    { brand:'Rayflex', title:'Easy Foods', loc:'Flórida · EUA', type:'video', src:'cases/rayflex-easy-foods.mp4', poster:'cases/rayflex-easy-foods-poster.jpg', desc:'Porta rápida Vector M2.' },
+    { brand:'Rayflex', title:'Ofner', loc:'São Paulo · SP', type:'video', src:'cases/rayflex-ofner.mp4', poster:'cases/rayflex-ofner-poster.jpg', desc:'Porta rápida Vector M2.' },
+    { brand:'Rayflex', title:'Mecano Pack', loc:'Taboão da Serra · SP', type:'image', img:'cases/rayflex-mecano-pack.jpg', desc:'Porta Rápida RP em operação logística.' },
+    // Tope Urbano
+    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', src:'cases/tope-urbano-1.mp4', poster:'cases/tope-urbano-1-poster.jpg', desc:'Kits autoinstaláveis de demarcação, sem pintura.' },
+    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', src:'cases/tope-urbano-2.mp4', poster:'cases/tope-urbano-2-poster.jpg', desc:'Aplicação instantânea, mais durável que a pintura tradicional.' },
+    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', src:'cases/tope-urbano-3.mp4', poster:'cases/tope-urbano-3-poster.jpg', desc:'Setas, linhas e faixas aplicadas sem prazos de secagem.' },
+    // Z-Tech
+    { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Obra em concreto armado', type:'video', src:'cases/ztech-1.mp4', poster:'cases/ztech-1-poster.jpg', desc:'Vergalhões de fibra de vidro: mais leves, resistentes e sem corrosão.' },
+    { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Construção civil', type:'image', img:'cases/ztech-1.jpg', desc:'Estrutura armada com vergalhões de fibra de vidro.' },
+    { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Construção civil', type:'image', img:'cases/ztech-2.jpg', desc:'Alternativa superior ao aço no concreto armado.' },
+  ];
+  const CBRANDS = ['Todas','Engepoli','HDA','Rayflex','Z-Tech','Tope Urbano'];
+  const PLAY = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  let caseFilter = 'Todas', lbList = [], lbIndex = 0;
+  const casesGrid = document.getElementById('casesGrid');
+  const casesFilters = document.getElementById('casesFilters');
+  const coverOf = c => c.type==='video' ? c.poster : c.img;
+  const caseFiltered = () => caseFilter==='Todas' ? CASES : CASES.filter(c=>c.brand===caseFilter);
+
+  function renderFilters(){
+    casesFilters.innerHTML = CBRANDS.map(b=>`<button class="cf-btn${b===caseFilter?' active':''}" data-b="${b}">${b}</button>`).join('');
+  }
+  function renderCases(){
+    casesGrid.innerHTML = caseFiltered().map((c,i)=>`
+      <div class="case-tile" data-i="${i}">
+        <img src="${coverOf(c)}" alt="${c.brand} — ${c.title}" loading="lazy">
+        ${c.type==='video' ? `<span class="case-play">${PLAY}</span>` : ''}
+        <div class="case-meta">
+          <span class="case-brand">${c.brand}</span>
+          <div class="case-title">${c.title}</div>
+          <div class="case-loc">${c.loc}</div>
+        </div>
+      </div>`).join('');
+  }
+  casesFilters.addEventListener('click', e=>{
+    const b=e.target.closest('.cf-btn'); if(!b) return;
+    caseFilter=b.dataset.b; renderFilters(); renderCases();
+  });
+  casesGrid.addEventListener('click', e=>{
+    const t=e.target.closest('.case-tile'); if(!t) return;
+    openLightbox(Number(t.dataset.i));
+  });
+  renderFilters(); renderCases();
+
+  // lightbox
+  const lb=document.getElementById('lightbox'), lbStage=document.getElementById('lbStage'), lbCap=document.getElementById('lbCaption');
+  function showLb(){
+    const c=lbList[lbIndex];
+    lbStage.innerHTML = c.type==='video'
+      ? `<video src="${c.src}" controls autoplay playsinline poster="${c.poster}"></video>`
+      : `<img src="${c.img}" alt="${c.brand} — ${c.title}">`;
+    lbCap.innerHTML = `<span class="lc-brand">${c.brand}</span><br><b>${c.title}</b>${c.loc?` · ${c.loc}`:''}${c.desc?`<br>${c.desc}`:''}`;
+  }
+  function openLightbox(i){
+    lbList=caseFiltered(); lbIndex=i; lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden'; showLb();
+  }
+  function closeLightbox(){
+    lb.classList.remove('open'); lb.setAttribute('aria-hidden','true');
+    lbStage.innerHTML=''; document.body.style.overflow='';
+  }
+  function lbStep(d){ lbIndex=(lbIndex+d+lbList.length)%lbList.length; showLb(); }
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', ()=>lbStep(-1));
+  document.getElementById('lbNext').addEventListener('click', ()=>lbStep(1));
+  lb.addEventListener('click', e=>{ if(e.target===lb) closeLightbox(); });
+  document.addEventListener('keydown', e=>{
+    if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') closeLightbox();
+    else if(e.key==='ArrowLeft') lbStep(-1);
+    else if(e.key==='ArrowRight') lbStep(1);
   });
 </script>
 </body>
