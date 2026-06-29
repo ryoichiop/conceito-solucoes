@@ -700,17 +700,18 @@
     { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Construção civil', ar:[1599,899], type:'image', img:'cases/ztech-1.jpg', desc:'Estrutura armada com vergalhões de fibra de vidro.' },
     { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Construção civil', ar:[899,1599], type:'image', img:'cases/ztech-2.jpg', desc:'Alternativa superior ao aço no concreto armado.' },
   ];
-  const CBRANDS = ['Todas','Engepoli','HDA','Rayflex','Z-Tech','Tope Urbano'];
+  const SOL = { 'Engepoli':'Luz e ventilação natural', 'HDA':'Iluminação LED industrial', 'Rayflex':'Portas rápidas e docas', 'Z-Tech':'Vergalhões de fibra de vidro', 'Tope Urbano':'Demarcação viária' };
+  const CSOLS = ['Todas','Luz e ventilação natural','Iluminação LED industrial','Portas rápidas e docas','Vergalhões de fibra de vidro','Demarcação viária'];
   const PLAY = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
   const MUTE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z" fill="currentColor"/><path d="m23 9-6 6M17 9l6 6"/></svg>';
   let caseFilter = 'Todas', lbList = [], lbIndex = 0;
   const casesGrid = document.getElementById('casesGrid');
   const casesFilters = document.getElementById('casesFilters');
   const coverOf = c => c.type==='video' ? c.poster : c.img;
-  const caseFiltered = () => caseFilter==='Todas' ? CASES : CASES.filter(c=>c.brand===caseFilter);
+  const caseFiltered = () => caseFilter==='Todas' ? CASES : CASES.filter(c=>SOL[c.brand]===caseFilter);
 
   function renderFilters(){
-    casesFilters.innerHTML = CBRANDS.map(b=>`<button class="cf-btn${b===caseFilter?' active':''}" data-b="${b}">${b}</button>`).join('');
+    casesFilters.innerHTML = CSOLS.map(b=>`<button class="cf-btn${b===caseFilter?' active':''}" data-b="${b}">${b}</button>`).join('');
   }
   function tileMedia(c){
     if(c.type==='video')
@@ -745,7 +746,7 @@
       <div class="case-tile" data-i="${i}" data-ar="${(c.ar||[4,3]).join(',')}">
         ${tileMedia(c)}
         <div class="case-meta">
-          <span class="case-brand">${c.brand}</span>
+          <span class="case-brand">${SOL[c.brand]}</span>
           <div class="case-title">${c.title}</div>
           <div class="case-loc">${c.loc}</div>
         </div>
