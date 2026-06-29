@@ -352,7 +352,7 @@
   .cf-btn { font-family:inherit; font-size:13.5px; font-weight:600; color:var(--m2); background:var(--card); border:1px solid var(--b2); border-radius:100px; padding:9px 18px; cursor:pointer; transition:all .2s; }
   .cf-btn:hover { border-color:var(--b4); color:var(--ink); }
   .cf-btn.active { background:var(--lime); color:var(--bg); border-color:var(--lime); }
-  .cases-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); grid-auto-rows:8px; gap:14px; grid-auto-flow:row dense; }
+  .cases-grid { display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:8px; gap:14px; grid-auto-flow:row dense; }
   .case-tile { position:relative; border-radius:16px; overflow:hidden; cursor:pointer; background:var(--card); border:1px solid var(--b2); }
   .case-tile img, .case-tile video { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
   .case-tile:hover img, .case-tile:hover video { transform:scale(1.04); }
@@ -378,12 +378,12 @@
   .lb-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); color:#fff; width:48px; height:48px; border-radius:50%; font-size:26px; line-height:1; cursor:pointer; transition:background .2s; }
   .lb-nav:hover { background:rgba(255,255,255,.18); }
   .lb-prev { left:20px; } .lb-next { right:20px; }
-  @media (max-width:1100px){ .cases-grid { grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); } }
+  @media (max-width:1100px){ .cases-grid { grid-template-columns:repeat(2,1fr); } }
   @media (max-width:900px){ .cases-head h2 { font-size:34px; } }
   @media (max-width:720px){
     .cases-head { flex-direction:column; align-items:flex-start; }
     .cases-head p { text-align:left; }
-    .cases-grid { grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); grid-auto-rows:6px; gap:10px; }
+    .cases-grid { grid-template-columns:repeat(2,1fr); grid-auto-rows:6px; gap:10px; }
     .case-meta { padding:11px; }
     .case-title { font-size:13.5px; }
     .lb-nav { width:40px; height:40px; font-size:22px; }
@@ -671,7 +671,7 @@
   // ---- CASES gallery ----
   const CASES = [
     // Engepoli
-    { brand:'Engepoli', title:'Arena da Baixada', loc:'Curitiba · PR', ar:[1400,727], type:'image', img:'cases/engepoli-arena-1.jpg', desc:'Domos Skylux, fachadas Luxwall e venezianas Luxvent — mais de 41.000 m² de policarbonato.' },
+    { brand:'Engepoli', title:'Arena da Baixada', loc:'Curitiba · PR', ar:[1400,727], big:true, type:'image', img:'cases/engepoli-arena-1.jpg', desc:'Domos Skylux, fachadas Luxwall e venezianas Luxvent — mais de 41.000 m² de policarbonato.' },
     { brand:'Engepoli', title:'Arena da Baixada', loc:'Curitiba · PR', ar:[1400,933], type:'image', img:'cases/engepoli-arena-2.jpg', desc:'Iluminação e ventilação natural na cobertura do estádio.' },
     { brand:'Engepoli', title:'Hangar da Azul', loc:'Azul Linhas Aéreas', ar:[1400,482], type:'image', img:'cases/engepoli-hangar-1.jpg', desc:'Venezianas industriais Luxvent para ventilação e luz natural em estrutura de grande vão.' },
     { brand:'Engepoli', title:'Hangar da Azul', loc:'Azul Linhas Aéreas', ar:[1400,404], type:'image', img:'cases/engepoli-hangar-2.jpg', desc:'Renovação de ar e entrada de luz natural no hangar.' },
@@ -696,7 +696,7 @@
     { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', ar:[562,1000], type:'video', vertical:true, src:'cases/tope-urbano-2.mp4', poster:'cases/tope-urbano-2-poster.jpg', desc:'Aplicação instantânea, mais durável que a pintura tradicional.' },
     { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', ar:[562,1000], type:'video', vertical:true, src:'cases/tope-urbano-3.mp4', poster:'cases/tope-urbano-3-poster.jpg', desc:'Setas, linhas e faixas aplicadas sem prazos de secagem.' },
     // Z-Tech
-    { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Obra em concreto armado', ar:[1000,563], type:'video', src:'cases/ztech-1.mp4', poster:'cases/ztech-1-poster.jpg', desc:'Vergalhões de fibra de vidro: mais leves, resistentes e sem corrosão.' },
+    { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Obra em concreto armado', ar:[1000,563], big:true, type:'video', src:'cases/ztech-1.mp4', poster:'cases/ztech-1-poster.jpg', desc:'Vergalhões de fibra de vidro: mais leves, resistentes e sem corrosão.' },
     { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Construção civil', ar:[1599,899], type:'image', img:'cases/ztech-1.jpg', desc:'Estrutura armada com vergalhões de fibra de vidro.' },
     { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Construção civil', ar:[899,1599], type:'image', img:'cases/ztech-2.jpg', desc:'Alternativa superior ao aço no concreto armado.' },
   ];
@@ -734,16 +734,21 @@
     const cs = getComputedStyle(casesGrid);
     const row = parseFloat(cs.gridAutoRows) || 8;
     const gap = parseFloat(cs.rowGap) || 14;
+    const colCount = cs.gridTemplateColumns.split(' ').length;
+    const colW = (casesGrid.clientWidth - gap*(colCount-1)) / colCount;
     casesGrid.querySelectorAll('.case-tile').forEach(t=>{
       const [aw, ah] = (t.dataset.ar || '4,3').split(',').map(Number);
-      const w = t.getBoundingClientRect().width;
+      let colSpan = (t.dataset.big === '1' || aw/ah >= 2.2) ? 2 : 1;
+      colSpan = Math.min(colSpan, colCount);
+      t.style.gridColumn = 'span ' + colSpan;
+      const w = colW*colSpan + gap*(colSpan-1);
       const h = w * ah / aw;
       t.style.gridRowEnd = 'span ' + Math.max(1, Math.round((h + gap) / (row + gap)));
     });
   }
   function renderCases(){
     casesGrid.innerHTML = caseFiltered().map((c,i)=>`
-      <div class="case-tile" data-i="${i}" data-ar="${(c.ar||[4,3]).join(',')}">
+      <div class="case-tile" data-i="${i}" data-ar="${(c.ar||[4,3]).join(',')}" data-big="${c.big?1:0}">
         ${tileMedia(c)}
         <div class="case-meta">
           <span class="case-brand">${SOL[c.brand]}</span>
