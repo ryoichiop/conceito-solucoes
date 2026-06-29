@@ -713,10 +713,8 @@
     casesFilters.innerHTML = CBRANDS.map(b=>`<button class="cf-btn${b===caseFilter?' active':''}" data-b="${b}">${b}</button>`).join('');
   }
   function tileMedia(c){
-    if(c.type==='video' && c.vertical)
-      return `<video class="case-vid" muted autoplay loop playsinline preload="none" poster="${c.poster}" data-src="${c.src}"></video><span class="case-mute" title="Toque para abrir com som">${MUTE}</span>`;
     if(c.type==='video')
-      return `<img src="${c.poster}" alt="${c.brand} — ${c.title}" loading="lazy"><span class="case-play">${PLAY}</span>`;
+      return `<video class="case-vid" muted autoplay loop playsinline preload="none" poster="${c.poster}" data-src="${c.src}"></video><span class="case-mute" title="Toque para abrir com som">${MUTE}</span>`;
     return `<img src="${c.img}" alt="${c.brand} — ${c.title}" loading="lazy">`;
   }
   let caseVidObs;
