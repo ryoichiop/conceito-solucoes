@@ -352,10 +352,11 @@
   .cf-btn { font-family:inherit; font-size:13.5px; font-weight:600; color:var(--m2); background:var(--card); border:1px solid var(--b2); border-radius:100px; padding:9px 18px; cursor:pointer; transition:all .2s; }
   .cf-btn:hover { border-color:var(--b4); color:var(--ink); }
   .cf-btn.active { background:var(--lime); color:var(--bg); border-color:var(--lime); }
-  .cases-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(258px,1fr)); gap:14px; }
-  .case-tile { position:relative; aspect-ratio:4/3; border-radius:16px; overflow:hidden; cursor:pointer; background:var(--card); border:1px solid var(--b2); }
-  .case-tile img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
-  .case-tile:hover img { transform:scale(1.06); }
+  .cases-grid { column-count:4; column-gap:14px; }
+  .case-tile { position:relative; break-inside:avoid; -webkit-column-break-inside:avoid; margin:0 0 14px; border-radius:16px; overflow:hidden; cursor:pointer; background:var(--card); border:1px solid var(--b2); }
+  .case-tile img, .case-tile video { width:100%; height:auto; display:block; transition:transform .4s ease; }
+  .case-tile:hover img, .case-tile:hover video { transform:scale(1.04); }
+  .case-mute { position:absolute; top:10px; right:10px; z-index:2; width:30px; height:30px; border-radius:50%; background:rgba(7,34,30,.6); border:1px solid var(--b3); color:#fff; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
   .case-tile::after { content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(6,29,26,.92) 0%, rgba(6,29,26,.22) 46%, transparent 72%); }
   .case-meta { position:absolute; left:0; right:0; bottom:0; z-index:2; padding:15px; }
   .case-brand { display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--lime); background:rgba(7,34,30,.6); border:1px solid var(--b3); border-radius:100px; padding:3px 9px; margin-bottom:8px; }
@@ -377,11 +378,12 @@
   .lb-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); color:#fff; width:48px; height:48px; border-radius:50%; font-size:26px; line-height:1; cursor:pointer; transition:background .2s; }
   .lb-nav:hover { background:rgba(255,255,255,.18); }
   .lb-prev { left:20px; } .lb-next { right:20px; }
+  @media (max-width:1100px){ .cases-grid { column-count:3; } }
   @media (max-width:900px){ .cases-head h2 { font-size:34px; } }
   @media (max-width:720px){
     .cases-head { flex-direction:column; align-items:flex-start; }
     .cases-head p { text-align:left; }
-    .cases-grid { grid-template-columns:repeat(auto-fill, minmax(148px,1fr)); gap:10px; }
+    .cases-grid { column-count:2; column-gap:10px; }
     .case-meta { padding:11px; }
     .case-title { font-size:13.5px; }
     .lb-nav { width:40px; height:40px; font-size:22px; }
@@ -685,14 +687,14 @@
     { brand:'HDA', title:'Posto Mazzochi', loc:'Posto de combustível', type:'image', img:'cases/hda-mazzochi-1.jpg', desc:'16 luminárias HDA 005 G1, desempenho comprovado ao longo de 6 anos.' },
     { brand:'HDA', title:'Posto Mazzochi', loc:'Posto de combustível', type:'image', img:'cases/hda-mazzochi-2.jpg', desc:'Economia de energia e qualidade de luz em um único produto.' },
     // Rayflex
-    { brand:'Rayflex', title:'Inplável', loc:'Joinville · SC', type:'video', src:'cases/rayflex-inplavel-joinville.mp4', poster:'cases/rayflex-inplavel-joinville-poster.jpg', desc:'Porta Rápida RP com acionamento por radar.' },
-    { brand:'Rayflex', title:'Easy Foods', loc:'Flórida · EUA', type:'video', src:'cases/rayflex-easy-foods.mp4', poster:'cases/rayflex-easy-foods-poster.jpg', desc:'Porta rápida Vector M2.' },
-    { brand:'Rayflex', title:'Ofner', loc:'São Paulo · SP', type:'video', src:'cases/rayflex-ofner.mp4', poster:'cases/rayflex-ofner-poster.jpg', desc:'Porta rápida Vector M2.' },
+    { brand:'Rayflex', title:'Inplável', loc:'Joinville · SC', type:'video', vertical:true, src:'cases/rayflex-inplavel-joinville.mp4', poster:'cases/rayflex-inplavel-joinville-poster.jpg', desc:'Porta Rápida RP com acionamento por radar.' },
+    { brand:'Rayflex', title:'Easy Foods', loc:'Flórida · EUA', type:'video', vertical:true, src:'cases/rayflex-easy-foods.mp4', poster:'cases/rayflex-easy-foods-poster.jpg', desc:'Porta rápida Vector M2.' },
+    { brand:'Rayflex', title:'Ofner', loc:'São Paulo · SP', type:'video', vertical:true, src:'cases/rayflex-ofner.mp4', poster:'cases/rayflex-ofner-poster.jpg', desc:'Porta rápida Vector M2.' },
     { brand:'Rayflex', title:'Mecano Pack', loc:'Taboão da Serra · SP', type:'image', img:'cases/rayflex-mecano-pack.jpg', desc:'Porta Rápida RP em operação logística.' },
     // Tope Urbano
-    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', src:'cases/tope-urbano-1.mp4', poster:'cases/tope-urbano-1-poster.jpg', desc:'Kits autoinstaláveis de demarcação, sem pintura.' },
-    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', src:'cases/tope-urbano-2.mp4', poster:'cases/tope-urbano-2-poster.jpg', desc:'Aplicação instantânea, mais durável que a pintura tradicional.' },
-    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', src:'cases/tope-urbano-3.mp4', poster:'cases/tope-urbano-3-poster.jpg', desc:'Setas, linhas e faixas aplicadas sem prazos de secagem.' },
+    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', vertical:true, src:'cases/tope-urbano-1.mp4', poster:'cases/tope-urbano-1-poster.jpg', desc:'Kits autoinstaláveis de demarcação, sem pintura.' },
+    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', vertical:true, src:'cases/tope-urbano-2.mp4', poster:'cases/tope-urbano-2-poster.jpg', desc:'Aplicação instantânea, mais durável que a pintura tradicional.' },
+    { brand:'Tope Urbano', title:'Demarcação viária', loc:'Sinalização de piso', type:'video', vertical:true, src:'cases/tope-urbano-3.mp4', poster:'cases/tope-urbano-3-poster.jpg', desc:'Setas, linhas e faixas aplicadas sem prazos de secagem.' },
     // Z-Tech
     { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Obra em concreto armado', type:'video', src:'cases/ztech-1.mp4', poster:'cases/ztech-1-poster.jpg', desc:'Vergalhões de fibra de vidro: mais leves, resistentes e sem corrosão.' },
     { brand:'Z-Tech', title:'Vergalhões GFRP', loc:'Construção civil', type:'image', img:'cases/ztech-1.jpg', desc:'Estrutura armada com vergalhões de fibra de vidro.' },
@@ -700,6 +702,7 @@
   ];
   const CBRANDS = ['Todas','Engepoli','HDA','Rayflex','Z-Tech','Tope Urbano'];
   const PLAY = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  const MUTE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z" fill="currentColor"/><path d="m23 9-6 6M17 9l6 6"/></svg>';
   let caseFilter = 'Todas', lbList = [], lbIndex = 0;
   const casesGrid = document.getElementById('casesGrid');
   const casesFilters = document.getElementById('casesFilters');
@@ -709,17 +712,36 @@
   function renderFilters(){
     casesFilters.innerHTML = CBRANDS.map(b=>`<button class="cf-btn${b===caseFilter?' active':''}" data-b="${b}">${b}</button>`).join('');
   }
+  function tileMedia(c){
+    if(c.type==='video' && c.vertical)
+      return `<video class="case-vid" muted autoplay loop playsinline preload="none" poster="${c.poster}" data-src="${c.src}"></video><span class="case-mute" title="Toque para abrir com som">${MUTE}</span>`;
+    if(c.type==='video')
+      return `<img src="${c.poster}" alt="${c.brand} — ${c.title}" loading="lazy"><span class="case-play">${PLAY}</span>`;
+    return `<img src="${c.img}" alt="${c.brand} — ${c.title}" loading="lazy">`;
+  }
+  let caseVidObs;
+  function setupAutoplay(){
+    if(caseVidObs) caseVidObs.disconnect();
+    caseVidObs = new IntersectionObserver(es=>{
+      es.forEach(en=>{
+        const v=en.target;
+        if(en.isIntersecting){ if(!v.src) v.src=v.dataset.src; v.play().catch(()=>{}); }
+        else v.pause();
+      });
+    }, {threshold:0.2});
+    document.querySelectorAll('.case-vid').forEach(v=>caseVidObs.observe(v));
+  }
   function renderCases(){
     casesGrid.innerHTML = caseFiltered().map((c,i)=>`
       <div class="case-tile" data-i="${i}">
-        <img src="${coverOf(c)}" alt="${c.brand} — ${c.title}" loading="lazy">
-        ${c.type==='video' ? `<span class="case-play">${PLAY}</span>` : ''}
+        ${tileMedia(c)}
         <div class="case-meta">
           <span class="case-brand">${c.brand}</span>
           <div class="case-title">${c.title}</div>
           <div class="case-loc">${c.loc}</div>
         </div>
       </div>`).join('');
+    setupAutoplay();
   }
   casesFilters.addEventListener('click', e=>{
     const b=e.target.closest('.cf-btn'); if(!b) return;
